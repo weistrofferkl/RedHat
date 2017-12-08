@@ -1,3 +1,5 @@
+import com.sun.xml.internal.ws.api.message.ExceptionHasMessage;
+
 import java.util.*;
 import static java.lang.Math.abs;
 public class Conversion {
@@ -6,13 +8,17 @@ public class Conversion {
         Convert a base-10 integer to an 8-bit two's complement binary number, and return
         the binary number
      */
-    public static String base10to2(String base10){
+    public static String base10to2(String base10) throws Exception {
 
         int numB10 = Integer.parseInt(base10);
-        boolean negFlag = false;
-        //numB10 = abs(numB10);
-        //convert to base 2
 
+        //When signed, 8bit values are from -128 to 127.
+        if(numB10 < -128 || numB10 > 127){
+            throw new Exception("ERROR: Input value cannot be converted to 8-bit representation as it is outside the range: -128 <= x <= 127");
+        }
+        boolean negFlag = false;
+
+        //Handle pesky negative numbers:
         if(numB10 < 0){
             negFlag = true;
             numB10 = abs(numB10);
@@ -26,18 +32,13 @@ public class Conversion {
         if(base2.length() < 8){
             //if so pad with 0's
             base2 = padding(base2);
-            // return base2;
+
         }
 
-        //TO DO:
-            //Add in less than and greater than error checking
-
+        //2's complement on negative inputs:
         if(negFlag == true){
-            System.out.println("Base 2: " + base2);
             base2 = flip8Bits(base2);
         }
-
-
 
         return base2;
     }
@@ -45,26 +46,26 @@ public class Conversion {
     public static String padding(String input){
         return String.format("%0" + (8-input.length()) + "d%s", 0, input);
     }
-    //
-    public static String flip8Bits(String num){
+
+    public static String flip8Bits(String num) throws Exception{
         if(num.length() < 8 || num.length() > 8){
-            //throw error
+            throw new Exception("ERROR: Input must consist of 8 bits");
         }
-        System.out.println("INcoming num: " + num);
         //want to flip all the bits and add 1
 
+            //Easier (imo) to handle using a char array rather than replacing/creating strings:
             char[] charStr = num.toCharArray();
+
             for(int i = 0; i < num.length(); i++){
                 if(charStr[i] == '0'){
-                    System.out.println("HI2");
                     charStr[i] = '1';
                 }
                 else if(charStr[i] == '1'){
-                    System.out.println("HI3");
                    charStr[i] = '0';
                 }
                 else{
-                    //Throw error
+                    //Throw error:
+                    throw new Exception("ERROR: Bits must only be a '1' or a '0'");
                 }
             }
 
@@ -79,12 +80,13 @@ public class Conversion {
         binary number
      */
 
-    public static String negBase2(String base10){
+    public static String negBase2(String base10) throws Exception{
 
         int numB10 = Integer.parseInt(base10);
 
         if(numB10 == 0){
-            //Throw exception if zero
+            //Throw Error:
+           throw new Exception("ERROR: Cannot convert '0' to a negative representation");
 
         }else if(numB10 > 0){
             numB10 *= -1;
@@ -103,9 +105,56 @@ public class Conversion {
     //Must be able to handle any base-10 integer that is submitted as a command line argument, even negative numbers
     //Provide suitable error handling.
 
-    public static void main(String[] args){
-        String testNum = "-127";
-        String output = negBase2(testNum);
-        System.out.println(output);
+    public static void main(String[] args) throws Exception {
+        String testNum = "10";
+        String output = null;
+        output = base10to2(testNum);
+        System.out.println(testNum + " : " +output);
+
+        testNum = "-128";
+        output = base10to2(testNum);
+        System.out.println(testNum + " : " +output);
+
+        testNum = "-127";
+        output = base10to2(testNum);
+        System.out.println(testNum + " : " +output);
+
+        testNum = "127";
+        output = base10to2(testNum);
+        System.out.println(testNum + " : " +output);
+
+        testNum = "-0";
+        output = base10to2(testNum);
+        System.out.println(testNum + " : " +output);
+
+        testNum = "0";
+        output = base10to2(testNum);
+        System.out.println(testNum + " : " +output);
+
+        testNum = "10";
+        output = negBase2(testNum);
+        System.out.println(testNum + " : " +output);
+
+        testNum = "128";
+        output = negBase2(testNum);
+        System.out.println(testNum + " : " +output);
+
+
+        //Test Exception:
+     /*   testNum = "-150";
+        output = base10to2(testNum);
+        System.out.println(testNum + " : " +output);*/
+
+     /*   testNum = "128";
+        output = base10to2(testNum);
+        System.out.println(testNum + " : " +output); */
+
+     /*   testNum = "0";
+        output = negBase2(testNum);
+        System.out.println(testNum + " : " +output); */
+
+     /*  testNum = "129";
+        output = negBase2(testNum);
+        System.out.println(testNum + " : " +output);*/
     }
 }
