@@ -37,7 +37,7 @@ public class Q2 {
 
 
     public static void main(String[] args){
-        String[] s = {"Hi", "A", "PERER", "STUFF", "me", "o", "LOwerCaSe"};
+        String[] s = {"Hi ", " A ", " PEPPER ", "  STUFF", " me ", " o ", " LOwerCaSe "};
         String[] ns = s;
 
         String newString = addStringItems(s, false);
