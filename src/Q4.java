@@ -11,7 +11,7 @@ public class Q4 {
      */
 
     //Combine two strings using Java iterators
-    public List<String> combine (Iterator<String> itr1, Iterator<String> itr2){
+    public static List<String> combine (Iterator<String> itr1, Iterator<String> itr2){
         //iterate over contents
         //combine results
         //O(n)
@@ -36,5 +36,22 @@ public class Q4 {
 
     //O(1) could use the peeking Iterator:
     // (https://google.github.io/guava/releases/19.0/api/docs/com/google/common/collect/PeekingIterator.html)
+
+    public static void main(String[] args){
+        List<String> testList1 = new ArrayList<String>();
+        List<String> testList2 = new ArrayList<String>();
+        List<String> output = new ArrayList<String>();
+
+        testList1.add("Hello");
+        testList1.add("World");
+        testList2.add("I");
+        testList2.add("Am");
+        testList2.add("Robot");
+
+        output = combine(testList1.iterator(), testList2.iterator());
+        System.out.println("Output: "+ output);
+
+
+    }
 
 }
