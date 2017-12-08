@@ -22,7 +22,7 @@ public class RangeImplem implements Range{
     public RangeImplem(int from, int to){
        // range = Collections.<Integer>emptySet();
         //Java 8 way
-        this.range = IntStream.range(from, to).boxed().collect(Collectors.toSet());
+        this.range = IntStream.range(from, to+1).boxed().collect(Collectors.toSet());
     }
 
     public Set<Integer> getRange(){
@@ -78,7 +78,10 @@ public class RangeImplem implements Range{
     public Range add(Range r){
      //   r = (RangeImplem)r;
         Set<Integer> range2 = ((RangeImplem)r).getRange();
+      //  int exclusiveMax = r.max();
         this.range.addAll(range2);
+      //  this.range.add(exclusiveMax+1);
+
         return this;
 
     }
@@ -87,12 +90,14 @@ public class RangeImplem implements Range{
         Range r = new RangeImplem();
         Range newR = r.newRange(1,5).add(r.newRange(8,10));
 
-
-        if(newR.isIn(7)){
+        if(!newR.isIn(6) && !newR.isIn(7) && newR.isIn(1) && newR.isIn(2) && newR.isIn(3) && newR.isIn(4)
+                && newR.isIn(5) && newR.isIn(8) && newR.isIn(9) && newR.isIn(10) && !newR.isIn(11)
+                && newR.max() == 10 && newR.min() == 1){
             System.out.println("PASSED");
         }
         else{
             System.out.println("FAILED");
+
         }
     }
 }
