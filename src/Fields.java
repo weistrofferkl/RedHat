@@ -4,8 +4,8 @@ public class Fields {
     //Can support sort order --> Sorted Ascending, Sorted Descending, Not Sorted
     //Use Enums?
 
-    private enum Order{ ASCENDING, DESCENDING, NOTSORTED}
-    private enum Type{NAME, LASTNAME, STREET1, STREET2, STATE, CITY, ZIPCODE};
+     enum Order{ ASCENDING, DESCENDING, NOTSORTED}
+     enum Type{NAME, LASTNAME, STREET1, STREET2, STATE, CITY, ZIPCODE};
 
     private Order sorted;
     private Type typeSpec;

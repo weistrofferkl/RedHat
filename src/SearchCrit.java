@@ -28,6 +28,11 @@ public class SearchCrit {
     public void setNumFieldsMax(int numFieldsMax) {
         this.numFieldsMax = numFieldsMax;
     }
+
+    //Realized in testing we need a way to add a field to the search criteria:
+    public void addAField(Fields f){
+        this.getFieldsList().add(f);
+    }
 }
 
 
