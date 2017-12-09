@@ -86,6 +86,20 @@ public class RangeImplem implements Range{
 
     }
 
+    //Got to the bonus:
+    @Override
+    public Range subtract(Range r){
+
+        Set<Integer> range2 = ((RangeImplem)r).getRange();
+
+        this.range.removeAll(range2);
+
+        return this;
+
+    }
+
+    //Used for testing purposes:
+/*
     public static void main(String[] args){
         Range r = new RangeImplem();
         Range newR = r.newRange(1,5).add(r.newRange(8,10));
@@ -99,5 +113,20 @@ public class RangeImplem implements Range{
             System.out.println("FAILED");
 
         }
-    }
+
+
+        Range r2 = new RangeImplem();
+        Range newR2 = r2.newRange(1,7).add(r2.newRange(10,12)).subtract(r2.newRange(4,6));
+
+        if(!newR2.isIn(6) && newR2.isIn(7) && newR2.isIn(1) && newR2.isIn(2) && newR2.isIn(3) && !newR2.isIn(4)
+                && !newR2.isIn(5) && !newR2.isIn(8) && !newR2.isIn(9) && newR2.isIn(10) && newR2.isIn(11)
+               && newR2.isIn(12) && newR2.max() == 12 && newR2.min() == 1){
+            System.out.println("PASSED");
+        }
+        else{
+            System.out.println("FAILED");
+
+        }
+
+    }*/
 }

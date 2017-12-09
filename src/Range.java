@@ -29,4 +29,8 @@ public interface Range {
         including 1,2,3,4,5,8,9,10
      */
     public Range add(Range r);
+
+    //BONUS: Implement public Range subtract(Range r)
+    //I'm assuming it's where we subtract the given range....
+    public Range subtract(Range r);
 }
