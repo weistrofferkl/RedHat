@@ -35,7 +35,9 @@ public class Q2 {
         return forceUpperCase ? output.toUpperCase() : output;
     }
 
+//Used for testing purposes:
 
+    /*
     public static void main(String[] args){
         String[] s = {"Hi ", " A ", " PEPPER ", "  STUFF", " me ", " o ", " LOwerCaSe "};
         String[] ns = s;
@@ -44,6 +46,6 @@ public class Q2 {
         String newString2 = addStringItems(ns, true);
         System.out.println("NEW STRING: " + newString);
         System.out.println("NEW STRING2: " + newString2);
-    }
+    }*/
 }
 

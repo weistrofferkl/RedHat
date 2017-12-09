@@ -1,5 +1,3 @@
-import com.sun.xml.internal.ws.api.message.ExceptionHasMessage;
-
 import java.util.*;
 import static java.lang.Math.abs;
 public class Conversion {
@@ -105,7 +103,8 @@ public class Conversion {
     //Must be able to handle any base-10 integer that is submitted as a command line argument, even negative numbers
     //Provide suitable error handling.
 
-    public static void main(String[] args) throws Exception {
+    //Used for testing purposes:
+    /*public static void main(String[] args) throws Exception {
         String testNum = "10";
         String output = null;
         output = base10to2(testNum);
@@ -155,6 +154,7 @@ public class Conversion {
 
      /*  testNum = "129";
         output = negBase2(testNum);
-        System.out.println(testNum + " : " +output);*/
+        System.out.println(testNum + " : " +output);
     }
+    */
 }

@@ -35,8 +35,10 @@ public class Q4 {
     }
 
     //O(1) could use the peeking Iterator:
-    // (https://google.github.io/guava/releases/19.0/api/docs/com/google/common/collect/PeekingIterator.html)
+    
 
+    //Used for testing purposes:
+    /*
     public static void main(String[] args){
         List<String> testList1 = new ArrayList<String>();
         List<String> testList2 = new ArrayList<String>();
@@ -50,8 +52,6 @@ public class Q4 {
 
         output = combine(testList1.iterator(), testList2.iterator());
         System.out.println("Output: "+ output);
-
-
-    }
+    }*/
 
 }

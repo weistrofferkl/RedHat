@@ -20,7 +20,6 @@ public class RangeImplem implements Range{
     }
 
     public RangeImplem(int from, int to){
-       // range = Collections.<Integer>emptySet();
         //Java 8 way
         this.range = IntStream.range(from, to+1).boxed().collect(Collectors.toSet());
     }
@@ -32,7 +31,6 @@ public class RangeImplem implements Range{
         Range range = new RangeImplem(from, to);
         return range;
     }
-
 
     /*
         Return if "value" is in the range defined by this object
@@ -54,7 +52,7 @@ public class RangeImplem implements Range{
         //using streams:
         Integer min = this.range.stream().min(Comparator.comparing(Integer::intValue)).get();
         return min;
-        //return 0;
+
     }
 
     /*
@@ -65,7 +63,6 @@ public class RangeImplem implements Range{
         //similar to "min" but we can just use max here instead
         Integer max = this.range.stream().max(Comparator.comparing(Integer::intValue)).get();
         return max;
-        //return 0;
     }
 
     /*
@@ -76,12 +73,8 @@ public class RangeImplem implements Range{
      */
     @Override
     public Range add(Range r){
-     //   r = (RangeImplem)r;
         Set<Integer> range2 = ((RangeImplem)r).getRange();
-      //  int exclusiveMax = r.max();
         this.range.addAll(range2);
-      //  this.range.add(exclusiveMax+1);
-
         return this;
 
     }
@@ -89,11 +82,9 @@ public class RangeImplem implements Range{
     //Got to the bonus:
     @Override
     public Range subtract(Range r){
-
         Set<Integer> range2 = ((RangeImplem)r).getRange();
-
+        //Similar to add, but can use removeAll:
         this.range.removeAll(range2);
-
         return this;
 
     }
